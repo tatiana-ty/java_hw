@@ -1,4 +1,4 @@
-package ru.geekbrains.java_three.lesson_a;
+package lesson_a;
 
 public class Orange extends Fruit implements NonMixable {
     @Override
