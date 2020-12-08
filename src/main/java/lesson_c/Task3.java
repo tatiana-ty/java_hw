@@ -11,16 +11,19 @@ public class Task3 {
         try(RandomAccessFile raf = new RandomAccessFile("hw/Hobbit_or_There_and_Back_Again-J_R_R_Tolkien.txt", "r")) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             while (true) {
-                System.out.print("p - previous; n - next; q - quit");
-                for (int i = pos; i < pos + 1800; i++) {
-                    raf.seek(i);
-                    System.out.print((char) raf.read());
-                }
+                System.out.println("p - previous; n - next; q - quit");
+                raf.seek(pos);
+                byte[] barr = new byte[1800];
+                raf.read(barr);
+                System.out.println(new String(barr));
                 String s = reader.readLine();
                 if (s.equals("p")) {
                     if (pos > 0) pos = pos - 1800;
                 } else if (s.equals("n")) pos = pos + 1800;
-                else if (s.equals("q")) break;
+                else if (s.equals("q")) {
+                    raf.close();
+                    break;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
